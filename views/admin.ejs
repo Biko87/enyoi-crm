@@ -1,0 +1,75 @@
+<%- include('ui/header', {tituloweb: 'CRM DEVCRAYON-ADMIN'}) %>
+
+<div class="grid contenedor contenido-principal">
+    <%- include('ui/menu.ejs') %>
+
+    <main class="caja-contenido col-9">
+        <h2>Clientes</h2>
+
+        <a href="nuevo-cliente.html" class="btn btn-verde nvo-cliente"> <i class="fas fa-plus-circle"></i>
+            Nuevo Cliente
+        </a>
+
+        <ul class="listado-clientes">
+            <li class="cliente">
+                <div class="info-cliente">
+                    <p class="nombre">Juan Pablo De la torre Valdez</p>
+                    <p class="empresa">Udemy</p>
+                    <p>correo@correo.com</p>
+                    <p>Tel: 209109310</p>
+                </div>
+                <div class="acciones">
+                    <a href="#" class="btn btn-azul">
+                        <i class="fas fa-pen-alt"></i>
+                        Editar Cliente
+                    </a>
+                    <button type="button" class="btn btn-rojo btn-eliminar">
+                        <i class="fas fa-times"></i>
+                        Eliminar Cliente
+                    </button>
+                </div>
+            </li>
+            <li class="cliente">
+                <div class="info-cliente">
+                    <p class="nombre">Juan Pablo De la torre Valdez</p>
+                    <p class="empresa">Udemy</p>
+                    <p>correo@correo.com</p>
+                    <p>Tel: 209109310</p>
+                </div>
+                <div class="acciones">
+                    <a href="#" class="btn btn-azul">
+                        <i class="fas fa-pen-alt"></i>
+                        Editar Cliente
+                    </a>
+
+                    <button type="button" class="btn btn-rojo btn-eliminar">
+                        <i class="fas fa-times"></i>
+                        Eliminar Cliente
+                    </button>
+                </div>
+            </li>
+            <li class="cliente">
+                <div class="info-cliente">
+                    <p class="nombre">Juan Pablo De la torre Valdez</p>
+                    <p class="empresa">Udemy</p>
+                    <p>correo@correo.com</p>
+                    <p>Tel: 209109310</p>
+                </div>
+                <div class="acciones">
+                    <a href="#" class="btn btn-azul">
+                        <i class="fas fa-pen-alt"></i>
+                        Editar Cliente
+                    </a>
+
+                    <button type="button" class="btn btn-rojo btn-eliminar">
+                        <i class="fas fa-times"></i>
+                        Eliminar Cliente
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</div>
+
+
+<%- include('ui/footer'); %>

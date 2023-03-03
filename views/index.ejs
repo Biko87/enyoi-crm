@@ -1,0 +1,25 @@
+<%- include('ui/headerAdmin', {tituloweb: 'CRM DEVCRAYON'}); %>
+
+<div class="login">
+    <h2>Iniciar Sesión</h2>
+    <div class="contenedor-formulario">
+        <form action="" method="POST">
+
+            <div class="campo">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email para Iniciar Sesión"/>
+            </div>
+
+            <div class="campo">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Password para Iniciar Sesión"/>
+            </div>
+
+            <input type="submit" value="Iniciar Sesión" class="btn btn-verde btn-block" />
+
+        </form>
+    </div>
+</div>
+
+
+<%- include('ui/footer'); %>
