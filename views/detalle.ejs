@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Staatliches" rel="stylesheet">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+
+    <header class="barra">
+        <div class="contenedor">
+            <h1>CRM - Administrador de Clientes</h1>
+        </div>
+    </header>
+
+    <h1>Datos Del Cliente</h1>
+
+    <% if (error) { %>
+        <%= mensaje %> 
+        <a 
+            href="/clientes"
+            class="btn btn-rojo btn-eliminar btn-block"
+        >
+            Volver
+        </a>
+    <% } %>
+
+    <% if (!error) { %>
+
+        <form id="editar" data-id="<%= cliente.id %>">
+            <legend>Edite los campos necesarios</legend>
+
+            <div class="campo">
+                <label>Nombre:</label>
+                <input type="text" placeholder="Nombre Cliente" name="nombre" value="<%= cliente.nombre %>" id="nombreInput">
+            </div>
+
+            <div class="campo">
+                <label>Apellido:</label>
+                <input type="text" placeholder="Apellido Cliente" name="apellido" value="<%= cliente.apellido %>" id="apellidoInput">
+            </div>
+        
+            <div class="campo">
+                <label>Empresa:</label>
+                <input type="text" placeholder="Empresa Cliente" name="empresa" value="<%= cliente.empresa %>" id="empresaInput">
+            </div>
+
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" placeholder="Email Cliente" name="email" value="<%= cliente.email %>" id="emailInput">
+            </div>
+
+            <div class="campo">
+                <label>Teléfono:</label>
+                <input type="tel" placeholder="Teléfono Cliente" name="telefono" value="<%= cliente.telefono %>" id="telefonoInput">
+            </div>
+
+            <div class="acciones">
+                <button type="submit" class="btn btn-azul btn-block" id="btnEliminar" data-id="<%= cliente.id %>">
+                    <i class="fas fa-pen-alt"></i>
+                    Editar Cliente
+                </button>
+
+                <button type="button" class="btn btn-rojo btn-eliminar" id="btnEliminar" data-id="<%= cliente.id %>">
+                    <i class="fas fa-times"></i>
+                    Eliminar Cliente
+                </button>
+
+                <a href="/clientes" class="btn btn-verde">
+                    <i class="fas fa-arrow-left"></i>
+                    Atras
+                </a>
+            </div>
+        </form>
+    <% } %>
+
+
+    <script>
+        // onclick vs addEventListener
+        // https://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick#:~:text=Essentially%20onclick%20is%20a%20HTML,(using%20this%20for%20example).
+        
+        const btnEliminar = document.querySelector('.btn-eliminar')
+          btnEliminar.addEventListener('click', async() => {
+            // console.log(btnEliminar.dataset.id)  
+            try {
+                // https://developer.mozilla.org/es/docs/Web/API/HTMLElement/dataset
+                const data = await fetch(`/clientes/${btnEliminar.dataset.id}`, {
+                  method: 'delete'
+                })
+                const res = await data.json()
+                // console.log(res)
+                if(res.estado){
+                    window.location.href = '/clientes'
+                }else{
+                    console.log(res)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+          });
+
+          const formEditar = document.querySelector('#editar');
+
+          formEditar.addEventListener('submit', async(e) => {
+            e.preventDefault()
+            // Alternativa #1 (capturar input)
+            // const nombre = formEditar.elements['nombre'].value
+            // Alternativa #2 (capturar input)
+            const nombre = document.querySelector('#nombreInput').value
+            const apellido = document.querySelector('#apellidoInput').value
+            const empresa = document.querySelector('#empresaInput').value
+            const email = document.querySelector('#emailInput').value
+            const telefono= document.querySelector('#telefonoInput').value
+            
+            const id = formEditar.dataset.id 
+
+            const data = await fetch(`/clientes/${id}`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: JSON.stringify({nombre, apellido, empresa, email, telefono})
+            })
+
+            const res = await data.json()
+
+            if(res.estado){
+                window.location.href = '/clientes'
+            }else{
+                console.log(res)
+            }
+        });
+        
+    </script>
+    
+</body>
+</html>

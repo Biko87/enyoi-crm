@@ -9,4 +9,5 @@ router.get("/admin", (req, res) => {
     res.render("admin", { tituloAdmin: "Bienvenido admin" }); 
 });
 
+
 module.exports = router;

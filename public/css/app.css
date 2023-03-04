@@ -40,6 +40,7 @@ h2 {
     font-family: var(--fontTexto);
     color: var(--grisOscuro);
     font-size: 3rem;
+    text-align: center;
 }
 .contenedor {
     max-width: 1400px;
@@ -80,18 +81,23 @@ h2 {
 }
 .btn-azul {
     background-color: var(--azul);
+    border-radius: 1rem;
 }
 .btn-rojo {
     background-color: var(--rojo);
+    border-radius: 1rem;
 }
 .btn-naranja {
     background-color: var(--naranja);
+    border-radius: 1rem;
 }
 .btn-amarillo {
     background-color: var(--amarillo);
+    border-radius: 1rem;
 }
 .btn-verde {
     background-color: var(--verde);
+    border-radius: 1rem;
 }
 .btn:disabled {
     opacity: .4;
