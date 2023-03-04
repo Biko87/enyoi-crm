@@ -1,6 +1,16 @@
 const express = require("express");
 const app = express();
-const port = 3500;
+require('dotenv').config()
+const port = process.env.PORT || 3000;
+
+// conexión a DB
+const mongoose = require('mongoose');
+
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.ao3w8sh.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(()=> console.log('conectado a mongodb')) 
+  .catch(e => console.log('error de conexión', e))
 
 // Motor de plantilla
 app.set("view engine", "ejs");
